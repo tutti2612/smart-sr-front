@@ -6,7 +6,7 @@
       :clipped="$vuetify.breakpoint.lgAndUp"
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link to="/">
           <v-list-item-action>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-action>
@@ -14,7 +14,7 @@
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item link to="Students">
           <v-list-item-action>
             <v-icon>mdi-face</v-icon>
           </v-list-item-action>
@@ -85,18 +85,7 @@
 
     <v-main>
       <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col class="text-center">
-            <v-tooltip left>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
+        <router-view></router-view>
       </v-container>
     </v-main>
     <v-footer color="indigo" app>
