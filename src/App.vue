@@ -1,6 +1,10 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      :clipped="$vuetify.breakpoint.lgAndUp"
+    >
       <v-list dense>
         <v-list-item link>
           <v-list-item-action>
@@ -69,7 +73,12 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="indigo" dark>
+    <v-app-bar
+      app
+      color="indigo"
+      dark
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>SmartSR</v-toolbar-title>
     </v-app-bar>
