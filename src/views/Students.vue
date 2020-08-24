@@ -2,9 +2,9 @@
   <div class="students">
     <h1>生徒管理</h1>
 
-    <v-container fluid class="elevation-5 mb-5">
-      <v-form>
-        <v-container>
+    <v-card class="mb-5">
+      <v-container fluid>
+        <v-form>
           <v-row>
             <v-col cols="12" md="4">
               <v-text-field v-model="name" label="氏名"></v-text-field>
@@ -15,13 +15,13 @@
           </v-row>
           <v-btn class="mr-4" color="primary">検索</v-btn>
           <v-btn @click="clear">clear</v-btn>
-        </v-container>
-      </v-form>
-    </v-container>
+        </v-form>
+      </v-container>
+    </v-card>
 
-    <v-container fluid class="elevation-5">
+    <v-card>
       <v-data-table :headers="headers" :items="desserts"></v-data-table>
-    </v-container>
+    </v-card>
   </div>
 </template>
 
