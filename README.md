@@ -1,34 +1,11 @@
 # smart-sr
 
-## Project setup
-```
-yarn install
-```
+## 概要
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- 校務管理システム
+  - 学校の先生が使用する想定
+- ポートフォリオ兼、技術研鑽用のプロジェクト。
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## 使用技術
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Vue.js / Vuetify / Vue Router / Vuex
