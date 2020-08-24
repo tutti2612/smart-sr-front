@@ -1,8 +1,5 @@
 <template>
-  <v-app
-    id="inspire"
-    :style="{ background: $vuetify.theme.themes.light.background }"
-  >
+  <v-app :style="{ background: $vuetify.theme.themes.light.background }">
     <v-navigation-drawer
       v-model="drawer"
       app
