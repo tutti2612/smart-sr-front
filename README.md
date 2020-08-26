@@ -8,4 +8,4 @@
 
 ## 使用技術
 
-Vue.js / Vuetify / Vue Router / Vuex
+Vue.js / Vuetify / Vue Router / Vuex / Typescript
