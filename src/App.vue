@@ -14,7 +14,7 @@
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link to="Students">
+        <v-list-item link to="/students">
           <v-list-item-action>
             <v-icon>mdi-face</v-icon>
           </v-list-item-action>

@@ -20,7 +20,11 @@
     </v-card>
 
     <v-card>
-      <v-data-table :headers="headers" :items="desserts"></v-data-table>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        @click:row="show"
+      ></v-data-table>
     </v-card>
   </div>
 </template>
@@ -40,10 +44,12 @@ export default Vue.extend({
       ],
       desserts: [
         {
+          id: 1,
           name: "土屋浩平",
           classroom: "3年7組"
         },
         {
+          id: 2,
           name: "田中太郎",
           classroom: "3年6組"
         }
@@ -56,6 +62,9 @@ export default Vue.extend({
     clear() {
       this.name = "";
       this.classroom = "";
+    },
+    show(payload: { id: any }) {
+      this.$router.push({ name: "Student", params: { id: payload.id } });
     }
   }
 });
