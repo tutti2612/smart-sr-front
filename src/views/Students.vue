@@ -22,7 +22,7 @@
     <v-card>
       <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="students"
         @click:row="show"
       ></v-data-table>
     </v-card>
@@ -42,7 +42,7 @@ export default Vue.extend({
         },
         { text: "クラス", value: "classroom" }
       ],
-      desserts: [
+      students: [
         {
           id: 1,
           name: "土屋浩平",
