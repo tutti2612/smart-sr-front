@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
 export default Vue.extend({
   data() {
     return {
@@ -42,23 +43,18 @@ export default Vue.extend({
         },
         { text: "クラス", value: "classroom" }
       ],
-      students: [
-        {
-          id: 1,
-          name: "土屋浩平",
-          classroom: "3年7組"
-        },
-        {
-          id: 2,
-          name: "田中太郎",
-          classroom: "3年6組"
-        }
-      ],
       name: "",
       classroom: ""
     };
   },
+  computed: {
+    ...mapGetters(["students"])
+  },
+  created() {
+    this.getStudents();
+  },
   methods: {
+    ...mapActions(["getStudents"]),
     clear() {
       this.name = "";
       this.classroom = "";

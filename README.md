@@ -1,4 +1,4 @@
-# smart-sr
+# smart-sr-front
 
 ## 概要
 
