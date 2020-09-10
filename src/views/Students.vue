@@ -31,7 +31,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default Vue.extend({
   data() {
     return {
@@ -50,7 +50,11 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["students"])
   },
+  created() {
+    this.getStudents();
+  },
   methods: {
+    ...mapActions(["getStudents"]),
     clear() {
       this.name = "";
       this.classroom = "";

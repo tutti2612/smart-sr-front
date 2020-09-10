@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
+
+const URL = "http://54.168.220.211:8080";
 
 Vue.use(Vuex);
 
@@ -17,24 +20,37 @@ export default new Vuex.Store({
       tel: "08065048680",
       mail: "doyahirohira@gmail.com"
     },
-    students: [
-      {
-        id: 1,
-        name: "土屋浩平",
-        classroom: "3年7組"
-      },
-      {
-        id: 2,
-        name: "田中太郎",
-        classroom: "3年6組"
-      }
-    ]
+    students: []
   },
   getters: {
     student: (state) => state.student,
     students: (state) => state.students
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setStudent(state, payload) {
+      state.student = payload.student;
+    },
+    setStudents(state, payload) {
+      state.students = payload.students;
+    }
+  },
+  actions: {
+    async getStudent({ commit }, id) {
+      try {
+        const res = await axios.get(`${URL}/student/${id}`);
+        commit("setStudent", { student: res.data });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getStudents({ commit }) {
+      try {
+        const res = await axios.get(`${URL}/students`);
+        commit("setStudents", { students: res.data });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
   modules: {}
 });
