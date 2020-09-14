@@ -42,7 +42,7 @@
           </tr>
           <tr>
             <th class="text-left">Mail</th>
-            <td>{{ student.mail }}</td>
+            <td>{{ student.email }}</td>
           </tr>
         </tbody>
       </template>
@@ -52,10 +52,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default Vue.extend({
+  props: {
+    id: {
+      type: Number,
+      required: true
+    }
+  },
   computed: {
     ...mapGetters(["student"])
+  },
+  created() {
+    this.getStudent(this.id);
+  },
+  methods: {
+    ...mapActions(["getStudent"])
   }
 });
 </script>

@@ -18,7 +18,8 @@ const routes: Array<RouteConfig> = [
   {
     path: "/student/:id",
     name: "Student",
-    component: () => import("../views/Student.vue")
+    component: () => import("../views/Student.vue"),
+    props: (route) => ({ id: Number(route.params.id) })
   }
   // {
   //   path: "/",
