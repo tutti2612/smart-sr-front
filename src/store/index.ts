@@ -2,7 +2,9 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 
-const URL = "http://localhost:8081";
+const BASE_STUDENT_URL = process.env.VUE_APP_STUDENT_URL;
+const GET_STUDENT_URL = BASE_STUDENT_URL + "/student";
+const GET_STUDENTS_URL = BASE_STUDENT_URL + "/students";
 
 Vue.use(Vuex);
 
@@ -26,7 +28,7 @@ export default new Vuex.Store({
   actions: {
     async getStudent({ commit }, id) {
       try {
-        const res = await axios.get(`${URL}/student/${id}`);
+        const res = await axios.get(GET_STUDENT_URL + "/" + id);
         commit("setStudent", { student: res.data });
       } catch (error) {
         console.error(error);
@@ -34,7 +36,7 @@ export default new Vuex.Store({
     },
     async getStudents({ commit }) {
       try {
-        const res = await axios.get(`${URL}/students`);
+        const res = await axios.get(GET_STUDENTS_URL);
         commit("setStudents", { students: res.data });
       } catch (error) {
         console.error(error);
