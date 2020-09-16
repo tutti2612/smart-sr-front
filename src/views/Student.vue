@@ -52,7 +52,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters, mapActions } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
   props: {
     id: {
