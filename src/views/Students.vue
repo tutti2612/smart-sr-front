@@ -20,11 +20,16 @@
     </v-card>
 
     <v-card>
-      <v-data-table
-        :headers="headers"
-        :items="students"
-        @click:row="show"
-      ></v-data-table>
+      <v-container fluid>
+        <div class="mb-4">
+          <v-btn color="success">新規作成</v-btn>
+        </div>
+        <v-data-table
+          :headers="headers"
+          :items="students"
+          @click:row="show"
+        ></v-data-table>
+      </v-container>
     </v-card>
   </div>
 </template>
