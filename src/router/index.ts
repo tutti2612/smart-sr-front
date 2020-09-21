@@ -15,15 +15,15 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/student/Students.vue")
   },
   {
+    path: "/student/new",
+    name: "Student_new",
+    component: () => import("../views/student/New.vue")
+  },
+  {
     path: "/student/:id",
     name: "Student_show",
     component: () => import("../views/student/Student.vue"),
     props: (route) => ({ id: Number(route.params.id) })
-  },
-  {
-    path: "/student/new",
-    name: "Student_new",
-    component: () => import("../views/student/New.vue")
   }
   // {
   //   path: "/about",

@@ -41,7 +41,7 @@
             <td>{{ student.tel }}</td>
           </tr>
           <tr>
-            <th class="text-left">Mail</th>
+            <th class="text-left">Email</th>
             <td>{{ student.email }}</td>
           </tr>
         </tbody>
