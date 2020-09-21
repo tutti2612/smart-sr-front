@@ -22,12 +22,12 @@
     <v-card>
       <v-container fluid>
         <div class="mb-4">
-          <v-btn color="success">新規作成</v-btn>
+          <v-btn @click="toNew" color="success">新規作成</v-btn>
         </div>
         <v-data-table
           :headers="headers"
           :items="students"
-          @click:row="show"
+          @click:row="toShow"
         ></v-data-table>
       </v-container>
     </v-card>
@@ -61,18 +61,21 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions(["getStudents"]),
-    clear() {
-      this.name = "";
-      this.classroom = "";
-    },
-    show(payload: { id: any }) {
-      this.$router.push({ name: "Student", params: { id: payload.id } });
-    },
     search() {
       this.getStudents({
         name: this.name,
         classroom: this.classroom
       });
+    },
+    clear() {
+      this.name = "";
+      this.classroom = "";
+    },
+    toNew() {
+      this.$router.push({ name: "Student_new" });
+    },
+    toShow(payload: { id: any }) {
+      this.$router.push({ name: "Student_show", params: { id: payload.id } });
     }
   }
 });
