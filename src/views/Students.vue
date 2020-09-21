@@ -13,7 +13,7 @@
               <v-text-field v-model="classroom" label="クラス"></v-text-field>
             </v-col>
           </v-row>
-          <v-btn class="mr-4" color="primary">検索</v-btn>
+          <v-btn @click="search" class="mr-4" color="primary">検索</v-btn>
           <v-btn @click="clear">clear</v-btn>
         </v-form>
       </v-container>
@@ -62,6 +62,12 @@ export default Vue.extend({
     },
     show(payload: { id: any }) {
       this.$router.push({ name: "Student", params: { id: payload.id } });
+    },
+    search() {
+      this.getStudents({
+        name: this.name,
+        classroom: this.classroom
+      });
     }
   }
 });
