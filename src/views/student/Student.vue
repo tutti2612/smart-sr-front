@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>生徒詳細</h1>
-    <v-simple-table>
+    <v-simple-table class="mb-4">
       <template v-slot:default>
         <tbody>
           <tr>
@@ -41,12 +41,16 @@
             <td>{{ student.tel }}</td>
           </tr>
           <tr>
-            <th class="text-left">Mail</th>
+            <th class="text-left">Email</th>
             <td>{{ student.email }}</td>
           </tr>
         </tbody>
       </template>
     </v-simple-table>
+    <div>
+      <v-btn color="info" class="mr-4">編集</v-btn>
+      <v-btn color="error">削除</v-btn>
+    </div>
   </div>
 </template>
 

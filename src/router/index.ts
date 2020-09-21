@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-// import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -13,19 +12,19 @@ const routes: Array<RouteConfig> = [
   {
     path: "/students",
     name: "Students",
-    component: () => import("../views/Students.vue")
+    component: () => import("../views/student/Students.vue")
+  },
+  {
+    path: "/student/new",
+    name: "Student_new",
+    component: () => import("../views/student/New.vue")
   },
   {
     path: "/student/:id",
-    name: "Student",
-    component: () => import("../views/Student.vue"),
+    name: "Student_show",
+    component: () => import("../views/student/Student.vue"),
     props: (route) => ({ id: Number(route.params.id) })
   }
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home
-  // },
   // {
   //   path: "/about",
   //   name: "About",

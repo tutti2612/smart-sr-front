@@ -13,18 +13,24 @@
               <v-text-field v-model="classroom" label="クラス"></v-text-field>
             </v-col>
           </v-row>
-          <v-btn class="mr-4" color="primary">検索</v-btn>
+          <v-btn @click="search" class="mr-4" color="primary">検索</v-btn>
           <v-btn @click="clear">clear</v-btn>
         </v-form>
       </v-container>
     </v-card>
 
     <v-card>
-      <v-data-table
-        :headers="headers"
-        :items="students"
-        @click:row="show"
-      ></v-data-table>
+      <v-container fluid>
+        <div class="mb-4">
+          <!-- <v-btn @click="toNew" color="success">新規作成</v-btn> -->
+          <RegisterStudent />
+        </div>
+        <v-data-table
+          :headers="headers"
+          :items="students"
+          @click:row="toShow"
+        ></v-data-table>
+      </v-container>
     </v-card>
   </div>
 </template>
@@ -32,8 +38,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { createNamespacedHelpers } from "vuex";
+import RegisterStudent from "@/components/RegisterStudent.vue";
 const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
+  components: { RegisterStudent },
   data() {
     return {
       headers: [
@@ -56,12 +64,21 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions(["getStudents"]),
+    search() {
+      this.getStudents({
+        name: this.name,
+        classroom: this.classroom
+      });
+    },
     clear() {
       this.name = "";
       this.classroom = "";
     },
-    show(payload: { id: any }) {
-      this.$router.push({ name: "Student", params: { id: payload.id } });
+    toNew() {
+      this.$router.push({ name: "Student_new" });
+    },
+    toShow(payload: { id: any }) {
+      this.$router.push({ name: "Student_show", params: { id: payload.id } });
     }
   }
 });
