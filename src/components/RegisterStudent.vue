@@ -55,6 +55,8 @@
               ></v-text-field>
               <v-select
                 :items="state.items"
+                item-text="sex"
+                item-value="value"
                 v-model="student.sex"
                 label="性別"
               ></v-select>
@@ -88,14 +90,14 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "@vue/composition-api";
 export default defineComponent({
-  setup() {
+  setup(props, { root }) {
     const dialog = ref(false);
     const student = reactive({
       name: "",
       classroom: "",
       address: "",
       club: "",
-      sex: "",
+      sex: "0",
       height: null,
       weight: null,
       age: null,
@@ -104,11 +106,15 @@ export default defineComponent({
     });
     const state = reactive({
       nameRules: [(v: string) => !!v || "Name is required"],
-      items: ["男", "女", "その他"]
+      items: [
+        { sex: "男", value: "1" },
+        { sex: "女", value: "2" },
+        { sex: "その他", value: "9" }
+      ]
     });
 
     function save() {
-      console.log("submit");
+      root.$store.dispatch("student/createStudent", student);
       dialog.value = false;
     }
 
