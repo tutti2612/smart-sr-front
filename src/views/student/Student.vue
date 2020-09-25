@@ -49,7 +49,7 @@
     </v-simple-table>
     <div>
       <v-btn color="info" class="mr-4">編集</v-btn>
-      <v-btn color="error">削除</v-btn>
+      <v-btn @click="destroy" color="error">削除</v-btn>
     </div>
   </div>
 </template>
@@ -72,7 +72,13 @@ export default Vue.extend({
     this.getStudent(this.id);
   },
   methods: {
-    ...mapActions(["getStudent"])
+    ...mapActions(["getStudent", "deleteStudent"]),
+    destroy() {
+      if (confirm("削除しますか？")) {
+        this.deleteStudent(this.id);
+        this.$router.push({ name: "Students" });
+      }
+    }
   }
 });
 </script>
