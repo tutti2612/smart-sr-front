@@ -4,6 +4,7 @@ const BASE_STUDENT_URL = process.env.VUE_APP_STUDENT_URL;
 const GET_STUDENT_URL = BASE_STUDENT_URL + "/student";
 const GET_STUDENTS_URL = BASE_STUDENT_URL + "/students";
 const CREATE_STUDENT_URL = BASE_STUDENT_URL + "/student";
+const UPDATE_STUDENT_URL = BASE_STUDENT_URL + "/student";
 const DELETE_STUDENT_URL = BASE_STUDENT_URL + "/student";
 
 type getStudentsParams = { name: string; classroom: string };
@@ -44,6 +45,14 @@ const actions = {
       const res = await axios.post(CREATE_STUDENT_URL, params);
       console.log(res);
       commit("setStudent", { student: res.data });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  async updateStudent({ commit }: any, params: any) {
+    try {
+      const res = await axios.put(UPDATE_STUDENT_URL + "/" + params.id, params);
+      console.log(res);
     } catch (error) {
       console.error(error);
     }
