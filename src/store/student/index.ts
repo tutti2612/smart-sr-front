@@ -53,6 +53,7 @@ const actions = {
     try {
       const res = await axios.put(UPDATE_STUDENT_URL + "/" + params.id, params);
       console.log(res);
+      commit("setStudent", { student: res.data });
     } catch (error) {
       console.error(error);
     }
