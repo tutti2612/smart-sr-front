@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <th class="text-left">性別</th>
-            <td>{{ student.sex }}</td>
+            <td>{{ student.sex | sex }}</td>
           </tr>
           <tr>
             <th class="text-left">身長</th>
@@ -64,6 +64,22 @@ import SaveStudent from "@/components/SaveStudent.vue";
 const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
   components: { SaveStudent },
+  filters: {
+    sex: function(value: string) {
+      switch (value) {
+        case "0":
+          return "未回答";
+        case "1":
+          return "男";
+        case "2":
+          return "女";
+        case "9":
+          return "その他";
+        default:
+          return "未回答";
+      }
+    }
+  },
   props: {
     id: {
       type: Number,
