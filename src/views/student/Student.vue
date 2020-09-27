@@ -49,7 +49,9 @@
     </v-simple-table>
     <div>
       <!-- <v-btn color="info" class="mr-4">編集</v-btn> -->
-      <EditStudent :student="student" />
+      <SaveStudent mode="update" color="info" :student="student">
+        編集
+      </SaveStudent>
       <v-btn @click="destroy" color="error">削除</v-btn>
     </div>
   </div>
@@ -58,10 +60,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { createNamespacedHelpers } from "vuex";
-import EditStudent from "@/components/EditStudent.vue";
+import SaveStudent from "@/components/SaveStudent.vue";
 const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
-  components: { EditStudent },
+  components: { SaveStudent },
   props: {
     id: {
       type: Number,

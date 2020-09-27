@@ -1,13 +1,13 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="success" v-bind="attrs" v-on="on">
-        新規登録
+      <v-btn :color="color" v-bind="attrs" v-on="on" class="mr-4">
+        <slot></slot>
       </v-btn>
     </template>
     <v-card>
       <v-card-title>
-        <span class="headline">新規登録</span>
+        <span class="headline"><slot></slot></span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -90,20 +90,29 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from "@vue/composition-api";
 export default defineComponent({
-  setup(props, { root }) {
+  props: {
+    mode: String,
+    color: String,
+    student: {
+      type: Object,
+      default: function() {
+        return {
+          name: "",
+          classroom: "",
+          address: "",
+          club: "",
+          sex: "0",
+          height: null,
+          weight: null,
+          age: null,
+          tel: "",
+          email: ""
+        };
+      }
+    }
+  },
+  setup(props: any, { root }: any) {
     const dialog = ref(false);
-    const student = reactive({
-      name: "",
-      classroom: "",
-      address: "",
-      club: "",
-      sex: "0",
-      height: null,
-      weight: null,
-      age: null,
-      tel: "",
-      email: ""
-    });
     const state = reactive({
       nameRules: [(v: string) => !!v || "Name is required"],
       items: [
@@ -114,13 +123,21 @@ export default defineComponent({
     });
 
     function save() {
-      root.$store.dispatch("student/createStudent", { student: student });
+      if (props.mode === "create") {
+        root.$store.dispatch("student/createStudent", {
+          student: props.student
+        });
+      }
+      if (props.mode === "update") {
+        root.$store.dispatch("student/updateStudent", {
+          student: props.student
+        });
+      }
       dialog.value = false;
     }
 
     return {
       dialog,
-      student,
       state,
       save
     };
