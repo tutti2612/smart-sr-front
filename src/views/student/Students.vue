@@ -23,7 +23,9 @@
       <v-container fluid>
         <div class="mb-4">
           <!-- <v-btn @click="toNew" color="success">新規作成</v-btn> -->
-          <RegisterStudent />
+          <SaveStudent mode="create" color="success">
+            新規登録
+          </SaveStudent>
         </div>
         <v-data-table
           :headers="headers"
@@ -38,10 +40,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { createNamespacedHelpers } from "vuex";
-import RegisterStudent from "@/components/RegisterStudent.vue";
+import SaveStudent from "@/components/SaveStudent.vue";
 const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
-  components: { RegisterStudent },
+  components: { SaveStudent },
   data() {
     return {
       headers: [

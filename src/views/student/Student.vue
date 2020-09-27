@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <th class="text-left">性別</th>
-            <td>{{ student.sex }}</td>
+            <td>{{ student.sex | sex }}</td>
           </tr>
           <tr>
             <th class="text-left">身長</th>
@@ -49,7 +49,9 @@
     </v-simple-table>
     <div>
       <!-- <v-btn color="info" class="mr-4">編集</v-btn> -->
-      <EditStudent :student="student" />
+      <SaveStudent mode="update" color="info" :student="student">
+        編集
+      </SaveStudent>
       <v-btn @click="destroy" color="error">削除</v-btn>
     </div>
   </div>
@@ -58,10 +60,26 @@
 <script lang="ts">
 import Vue from "vue";
 import { createNamespacedHelpers } from "vuex";
-import EditStudent from "@/components/EditStudent.vue";
+import SaveStudent from "@/components/SaveStudent.vue";
 const { mapGetters, mapActions } = createNamespacedHelpers("student");
 export default Vue.extend({
-  components: { EditStudent },
+  components: { SaveStudent },
+  filters: {
+    sex: function(value: string) {
+      switch (value) {
+        case "0":
+          return "未回答";
+        case "1":
+          return "男";
+        case "2":
+          return "女";
+        case "9":
+          return "その他";
+        default:
+          return "未回答";
+      }
+    }
+  },
   props: {
     id: {
       type: Number,

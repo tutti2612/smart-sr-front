@@ -1,13 +1,13 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="info" v-bind="attrs" v-on="on" class="mr-4">
-        編集
+      <v-btn :color="color" v-bind="attrs" v-on="on" class="mr-4">
+        <slot></slot>
       </v-btn>
     </template>
     <v-card>
       <v-card-title>
-        <span class="headline">編集</span>
+        <span class="headline"><slot></slot></span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -91,9 +91,27 @@
 import { defineComponent, reactive, ref } from "@vue/composition-api";
 export default defineComponent({
   props: {
-    student: {}
+    mode: String,
+    color: String,
+    student: {
+      type: Object,
+      default: function() {
+        return {
+          name: "",
+          classroom: "",
+          address: "",
+          club: "",
+          sex: "0",
+          height: null,
+          weight: null,
+          age: null,
+          tel: "",
+          email: ""
+        };
+      }
+    }
   },
-  setup(props, { root }) {
+  setup(props: any, { root }: any) {
     const dialog = ref(false);
     const state = reactive({
       nameRules: [(v: string) => !!v || "Name is required"],
@@ -105,7 +123,16 @@ export default defineComponent({
     });
 
     function save() {
-      root.$store.dispatch("student/updateStudent", props.student);
+      if (props.mode === "create") {
+        root.$store.dispatch("student/createStudent", {
+          student: props.student
+        });
+      }
+      if (props.mode === "update") {
+        root.$store.dispatch("student/updateStudent", {
+          student: props.student
+        });
+      }
       dialog.value = false;
     }
 
