@@ -114,7 +114,7 @@ export default defineComponent({
     });
 
     function save() {
-      root.$store.dispatch("student/createStudent", student);
+      root.$store.dispatch("student/createStudent", { student: student });
       dialog.value = false;
     }
 

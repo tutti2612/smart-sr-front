@@ -105,7 +105,7 @@ export default defineComponent({
     });
 
     function save() {
-      root.$store.dispatch("student/updateStudent", props.student);
+      root.$store.dispatch("student/updateStudent", { student: props.student });
       dialog.value = false;
     }
 

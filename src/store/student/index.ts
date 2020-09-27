@@ -7,7 +7,21 @@ const CREATE_STUDENT_URL = BASE_STUDENT_URL + "/student";
 const UPDATE_STUDENT_URL = BASE_STUDENT_URL + "/student";
 const DELETE_STUDENT_URL = BASE_STUDENT_URL + "/student";
 
-type getStudentsParams = { name: string; classroom: string };
+type GetStudentsParams = { name: string; classroom: string };
+type Student = {
+  id: number;
+  name: string;
+  classroom: string;
+  address: string;
+  club: string;
+  sex: string;
+  height: number;
+  weight: number;
+  age: number;
+  tel: string;
+  email: string;
+};
+type Students = Student[];
 
 const state = {
   student: {},
@@ -15,8 +29,8 @@ const state = {
 };
 
 const getters = {
-  student: (state: { student: any }) => state.student,
-  students: (state: { students: any }) => state.students
+  student: (state: { student: Student }) => state.student,
+  students: (state: { students: Students }) => state.students
 };
 
 const actions = {
@@ -29,7 +43,7 @@ const actions = {
       console.error(error);
     }
   },
-  async getStudents({ commit }: any, params: getStudentsParams) {
+  async getStudents({ commit }: any, params: GetStudentsParams) {
     try {
       const res = await axios.get(GET_STUDENTS_URL, {
         params: params
@@ -40,18 +54,21 @@ const actions = {
       console.error(error);
     }
   },
-  async createStudent({ commit }: any, params: any) {
+  async createStudent({ commit }: any, params: { student: Student }) {
     try {
-      const res = await axios.post(CREATE_STUDENT_URL, params);
+      const res = await axios.post(CREATE_STUDENT_URL, params.student);
       console.log(res);
       commit("setStudent", { student: res.data });
     } catch (error) {
       console.error(error);
     }
   },
-  async updateStudent({ commit }: any, params: any) {
+  async updateStudent({ commit }: any, params: { student: Student }) {
     try {
-      const res = await axios.put(UPDATE_STUDENT_URL + "/" + params.id, params);
+      const res = await axios.put(
+        UPDATE_STUDENT_URL + "/" + params.student.id,
+        params.student
+      );
       console.log(res);
       commit("setStudent", { student: res.data });
     } catch (error) {
@@ -69,10 +86,10 @@ const actions = {
 };
 
 const mutations = {
-  setStudent(state: { student: any }, payload: { student: any }) {
+  setStudent(state: { student: Student }, payload: { student: Student }) {
     state.student = payload.student;
   },
-  setStudents(state: { students: any }, payload: { students: any }) {
+  setStudents(state: { students: Students }, payload: { students: Students }) {
     state.students = payload.students;
   }
 };
