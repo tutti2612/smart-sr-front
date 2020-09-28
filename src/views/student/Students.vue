@@ -85,3 +85,11 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+::v-deep table {
+  tr {
+    cursor: pointer;
+  }
+}
+</style>
