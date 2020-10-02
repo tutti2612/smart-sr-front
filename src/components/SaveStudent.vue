@@ -119,9 +119,9 @@ export default defineComponent({
           address: "",
           club: "",
           sex: "0",
-          height: "",
-          weight: "",
-          age: "",
+          height: null,
+          weight: null,
+          age: null,
           tel: "",
           email: ""
         };
@@ -132,9 +132,9 @@ export default defineComponent({
     const form = ref();
     const validationRules = reactive({
       name: [(v: string) => !!v || "Name is required"],
-      height: [(v: string) => /^\d*$/.test(v) || "height must be valid"],
-      weight: [(v: string) => /^\d*$/.test(v) || "weight must be valid"],
-      age: [(v: string) => /^\d*$/.test(v) || "age must be valid"],
+      height: [(v: string) => /null|^\d*$/.test(v) || "height must be valid"],
+      weight: [(v: string) => /null|^\d*$/.test(v) || "weight must be valid"],
+      age: [(v: string) => /null|^\d*$/.test(v) || "age must be valid"],
       tel: [(v: string) => /^\d*$/.test(v) || "tel must be valid"],
       email: [(v: string) => /^$|(.+@.+\..+)/.test(v) || "E-mail must be valid"]
     });
@@ -150,6 +150,12 @@ export default defineComponent({
 
     function save() {
       if (!form.value.validate()) return;
+
+      // v-model.number はフォームを空にするとnullではなく""になってしまう。
+      // バックエンドにはnullで送信したいのでここで代入する。
+      props.student.height = props.student.height || null;
+      props.student.weight = props.student.weight || null;
+      props.student.age = props.student.age || null;
 
       if (props.mode === "create") {
         context.root.$store.dispatch("student/createStudent", {
