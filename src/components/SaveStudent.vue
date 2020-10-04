@@ -55,7 +55,7 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="student.age"
+                  v-model.number="student.age"
                   :rules="validationRules.age"
                   label="年齢"
                   suffix="歳"
@@ -70,13 +70,13 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
-                  v-model="student.height"
+                  v-model.number="student.height"
                   :rules="validationRules.height"
                   label="身長"
                   suffix="cm"
                 ></v-text-field>
                 <v-text-field
-                  v-model="student.weight"
+                  v-model.number="student.weight"
                   :rules="validationRules.weight"
                   label="体重"
                   suffix="kg"
